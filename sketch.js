@@ -1,4 +1,4 @@
-//Create variables here
+//edited
 var dog, dogImg, happyDogImg, database, foodS, foodStock;
 
 function preload()
@@ -26,24 +26,33 @@ function setup() {
 function draw() {  
   background(46, 139, 87);
 
-  if(keyWentDown(UP_ARROW)){
-    console.log(foodS);
-    writeStock(foodS);
-    dog.addImage(happyDogImg);
-  }
+  fill("white");
+stroke("black");
+if (foodS <= 10) {
+  stroke("red");
+  fill("red");
+text("Food remaining : "+foodS,195,450);
+} else {
+stroke("black");
+fill("white");
+text("Food remaining : "+foodS,195,450);
+}
+fill("white");
+stroke("black");
+textSize(13);
+text("Note: Press the UP ARROW Key To Feed Drago Milk!",115,10,300,20);
+
 
   drawSprites();
-  //add styles here
+  
 
 }
 
 function readStock(data) {
   foodS = data.val();
-  //console.log(foodS);
 }
 
 function writeStock(x){
-  //console.log(x);
   if(x <= 0) {
     x = 0;
   } else{x--}
@@ -51,3 +60,11 @@ function writeStock(x){
 
   
 }
+
+function keyPressed() {
+  if(keyCode === UP_ARROW) {
+    writeStock(foodS);
+    dog.addImage(happyDogImg);
+  }
+}
+
